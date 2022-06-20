@@ -16,18 +16,29 @@ public class Main {
         String inputText      = inputCalculateText();
         String[] inputNumbers = splitInputNumber.split(inputText);
 
-        try {
-            exception.exeptions(inputNumbers);
-        } catch (FileNotFoundException error) {
-            error.printStackTrace();
+        if (!exception.testing(inputNumbers)) {
+            throw new NumberFormatException();
+        } else {
+            int[] inputNumbersInt = converter.toInt(inputNumbers);
+            int oneNumber = inputNumbersInt[0];
+            int twoNumber = inputNumbersInt[1];
+            OperationType operationType = (OperationType.get(inputText));
+            int resultInteger = calculation.execute(oneNumber, twoNumber, operationType);
+            exception.resultLessThanZero(resultInteger);
+            System.out.println("Результат: " + resultInteger);
         }
+    }
 
-        int[] inputNumbersInt       = converter.toInt(inputNumbers);
-        int oneNumber               = inputNumbersInt[0];
-        int twoNumber               = inputNumbersInt[1];
+    public static String calculation(String inputText){
+        String[] inputNumbers = splitInputNumber.split(inputText);
+        int[] inputNumbersInt = converter.toInt(inputNumbers);
+        int oneNumber = inputNumbersInt[0];
+        int twoNumber = inputNumbersInt[1];
         OperationType operationType = (OperationType.get(inputText));
-        int result                  = calculation.execute(oneNumber, twoNumber, operationType);
-        System.out.println("Результат: " + result);
+        int resultInteger = calculation.execute(oneNumber, twoNumber, operationType);
+        String resultString = Integer.toString(resultInteger);
+        exception.resultLessThanZero(resultInteger);
+        return resultString;
     }
 
     public static String inputCalculateText(){
