@@ -23,9 +23,19 @@ public class Main {
             int oneNumber = inputNumbersInt[0];
             int twoNumber = inputNumbersInt[1];
             OperationType operationType = (OperationType.get(inputText));
-            int resultInteger = calculation.execute(oneNumber, twoNumber, operationType);
+            int resultInteger   = calculation.execute(oneNumber, twoNumber, operationType);
+            String resultString = String.valueOf(resultInteger);
             exception.resultLessThanZero(resultInteger);
-            System.out.println("Результат: " + resultInteger);
+            DefineOperasand type = DefineOperasand.getOperasand(inputNumbers[0]);
+            switch (type) {
+                case ARABIA:
+                    System.out.println("Результат: " + resultInteger);
+                    break;
+                case ROMAN:
+                    RomanNumerals resultRoman = RomanNumerals.converterToRoman(resultInteger);
+                    System.out.println("Результат: " + resultRoman);
+                    break;
+            }
         }
     }
 
@@ -48,4 +58,7 @@ public class Main {
         return inputText;
     }
 }
-
+//III+III
+//3+3
+//3+III
+//III+3

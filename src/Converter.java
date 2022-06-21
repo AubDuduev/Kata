@@ -8,8 +8,8 @@ public class Converter {
         int twoNumberInt;
         switch (DefineOperasand.getOperasand(oneNumber)){
             case ROMAN:
-                oneNumberInt = RomanNumerals.converter(oneNumber);
-                twoNumberInt = RomanNumerals.converter(twoNumber);
+                oneNumberInt = RomanNumerals.converterToNumber(oneNumber);
+                twoNumberInt = RomanNumerals.converterToNumber(twoNumber);
                 break;
             case ARABIA:
                 oneNumberInt = Integer.parseInt(oneNumber);

@@ -1,3 +1,9 @@
+import com.sun.tools.javac.util.List;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public enum RomanNumerals {
 
@@ -12,6 +18,12 @@ public enum RomanNumerals {
     IX(9),
     X(10);
 
+    private String typeOfDay;
+
+    public static Stream<RomanNumerals> stream() {
+        return Stream.of(RomanNumerals.values());
+    }
+
     int number;
 
     RomanNumerals(int number) {
@@ -22,9 +34,16 @@ public enum RomanNumerals {
         return this.number;
     }
 
-    static int converter(String romanString) {
+    static int converterToNumber(String romanString) {
         RomanNumerals romanNumber = RomanNumerals.valueOf(romanString);
         return romanNumber.number;
+    };
+
+    static RomanNumerals converterToRoman(int numberInteger) {
+        Stream<RomanNumerals> romans = Stream.of(RomanNumerals.values());
+        Stream<RomanNumerals> numbers = romans.filter(d -> d.number == numberInteger);
+        Optional<RomanNumerals> number = numbers.findFirst();
+        return number.get();
     };
 
     static boolean isRomanNumerals(String inputString) {

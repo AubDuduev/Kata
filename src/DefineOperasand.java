@@ -14,12 +14,3 @@ public enum DefineOperasand {
         }
     }
 }
-// if (scanner.hasNextInt()) {
-//         int newNumber = scanner.nextInt();
-//         return newNumber;
-//         } else if (scanner.hasNextLine()) {
-//         String romanString = scanner.nextLine();
-//         return RomanNumerals.converter(romanString);
-//         } else {
-//         number = inputCalculateText();
-//         }

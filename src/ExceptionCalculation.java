@@ -44,8 +44,8 @@ public class ExceptionCalculation {
     }
 
     private boolean minAndMaxRoman(String[] inputString){
-        int oneValue = RomanNumerals.converter(inputString[0]);
-        int twoValue = RomanNumerals.converter(inputString[1]);
+        int oneValue = RomanNumerals.converterToNumber(inputString[0]);
+        int twoValue = RomanNumerals.converterToNumber(inputString[1]);
 
         if (oneValue >= 0 & twoValue <= 10) {
             return true;
@@ -98,7 +98,3 @@ public class ExceptionCalculation {
         }
     }
 }
-//III+III
-//3+3
-//3+III
-//III+3
