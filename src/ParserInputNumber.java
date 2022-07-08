@@ -1,6 +1,6 @@
 
 
-public class SplitInputNumber {
+public class ParserInputNumber {
 
     public String[] split(String inputText) {
         String minus    = "-";

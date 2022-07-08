@@ -35,7 +35,7 @@ public class ExceptionCalculation {
         }
         //проверка оба номера римских
         //проверка оба номера арабские
-        if (isRoman || isIntegers || isInputCount) {
+        if ((isRoman == true || isIntegers == true) && isInputCount) {
             return true;
         } else {
             System.out.println("т.к. используются одновременно разные системы счисления");

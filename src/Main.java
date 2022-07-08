@@ -5,17 +5,22 @@ import java.util.Scanner;
 
 public class Main {
     //считывает данные с консоли
-    static Scanner scanner                   = new Scanner(System.in);
-    static Calculation calculation           = new Calculation();
-    static SplitInputNumber splitInputNumber = new SplitInputNumber();
-    static Converter converter               = new Converter();
-    static ExceptionCalculation exception    = new ExceptionCalculation();
+    static Scanner scanner                    = new Scanner(System.in);
+    static Calculation calculation            = new Calculation();
+    static ParserInputNumber parserInputNumber = new ParserInputNumber();
+    static Converter converter                = new Converter();
+    static ExceptionCalculation exception     = new ExceptionCalculation();
 
     public static void main(String [] args) {
 
-        String inputText      = inputCalculateText();
-        String[] inputNumbers = splitInputNumber.split(inputText);
+        String inputText = inputCalculateText();
 
+        String resultString = calculation(inputText);
+        System.out.println(resultString);
+    }
+
+    public static String calculation(String inputText){
+        String[] inputNumbers = parserInputNumber.split(inputText);
         if (!exception.testing(inputNumbers)) {
             throw new NumberFormatException();
         } else {
@@ -24,31 +29,18 @@ public class Main {
             int twoNumber = inputNumbersInt[1];
             OperationType operationType = (OperationType.get(inputText));
             int resultInteger   = calculation.execute(oneNumber, twoNumber, operationType);
-            String resultString = String.valueOf(resultInteger);
             exception.resultLessThanZero(resultInteger);
             DefineOperasand type = DefineOperasand.getOperasand(inputNumbers[0]);
             switch (type) {
                 case ARABIA:
-                    System.out.println("Результат: " + resultInteger);
-                    break;
+                    return "Результат: " + resultInteger;
                 case ROMAN:
                     RomanNumerals resultRoman = RomanNumerals.converterToRoman(resultInteger);
-                    System.out.println("Результат: " + resultRoman);
-                    break;
+                    return "Результат: " + resultRoman;
+                default:
+                    return "";
             }
         }
-    }
-
-    public static String calculation(String inputText){
-        String[] inputNumbers = splitInputNumber.split(inputText);
-        int[] inputNumbersInt = converter.toInt(inputNumbers);
-        int oneNumber = inputNumbersInt[0];
-        int twoNumber = inputNumbersInt[1];
-        OperationType operationType = (OperationType.get(inputText));
-        int resultInteger = calculation.execute(oneNumber, twoNumber, operationType);
-        String resultString = Integer.toString(resultInteger);
-        exception.resultLessThanZero(resultInteger);
-        return resultString;
     }
 
     public static String inputCalculateText(){

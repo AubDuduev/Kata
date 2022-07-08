@@ -18,20 +18,10 @@ public enum RomanNumerals {
     IX(9),
     X(10);
 
-    private String typeOfDay;
-
-    public static Stream<RomanNumerals> stream() {
-        return Stream.of(RomanNumerals.values());
-    }
-
     int number;
 
     RomanNumerals(int number) {
         this.number = number;
-    }
-
-    int toNumber() {
-        return this.number;
     }
 
     static int converterToNumber(String romanString) {
